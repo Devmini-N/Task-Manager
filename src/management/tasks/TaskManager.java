@@ -25,8 +25,6 @@ public class TaskManager implements Serializable{
 
     }
 
-
-
     public void PrintStatus(){
         System.out.println("Welcome to your personal task manager!!");
     }
@@ -46,7 +44,25 @@ public class TaskManager implements Serializable{
             System.out.println(action.execute(user,this, this.scanner));
         }
     }
-
+    public Tasks userGetTasks() {
+        PriorityQueue<Tasks> tasksList = user.getTasks();
+        ArrayList<Tasks> tasks = new ArrayList<>(tasksList);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select task number:");
+        int i = 1;
+        for (Tasks task : tasks) {
+            System.out.println(i + ". " + task);
+            i++;
+        }
+        System.out.print("Enter no. of desired task: ");
+        int index = scanner.nextInt();
+        if (index >= 1 && index <= tasks.size()) {
+            return tasks.get(index - 1);
+        } else {
+            System.out.println("Invalid. Please try again.");
+            return null;
+        }
+    }
 
 
 }

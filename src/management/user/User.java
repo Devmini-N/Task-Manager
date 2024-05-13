@@ -1,9 +1,6 @@
 package management.user;
 
-import actions.Actions;
-import actions.CreateTaskAction;
-import actions.ExitAction;
-import actions.ViewTasksAction;
+import actions.*;
 import actions.capabilities.ActionCapable;
 import management.tasks.Tasks;
 
@@ -32,6 +29,10 @@ public class User implements ActionCapable {
 
     public void addTasks(Tasks mytask) {
         tasks.add(mytask);
+    }
+
+    public PriorityQueue<Tasks> getTasks() {
+        return tasks;
     }
 
     public void displayTasks() {
@@ -69,6 +70,7 @@ public class User implements ActionCapable {
         actions.add(new CreateTaskAction()); // Passing tasks list to actions.CreateTaskAction
         actions.add(new ViewTasksAction(tasks, this));
         actions.add(new ExitAction());
+        actions.add(new RemoveTaskAction());
         return actions;
     }
 }

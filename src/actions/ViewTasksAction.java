@@ -20,6 +20,10 @@ public class ViewTasksAction implements Actions {
 
     @Override
     public String execute(User user, TaskManager taskManager, Scanner scanner) {
+        PriorityQueue<Tasks> tasks = user.getTasks();
+        if (tasks.isEmpty()) {
+            return "No tasks available to review.";
+        }
         user.displayTasks();
         return "Tasks displayed successfully.";
     }
